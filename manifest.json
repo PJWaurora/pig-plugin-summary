@@ -1,0 +1,80 @@
+{
+  "name": "summary",
+  "display_name": "聊天总结",
+  "version": "2.0.0",
+  "description": "总结群聊天记录，生成可视化报告（支持并发LLM分析、话题提取、金句挖掘）",
+  "author": "pwaurora",
+  "enabled": true,
+  "main_class": "SummaryModule",
+  "main_file": "summary.py",
+  "dependencies": [
+    "jieba",
+    "Pillow",
+    "openai"
+  ],
+  "permissions": [
+    "send_image",
+    "database",
+    "ai_api"
+  ],
+  "triggers": [
+    "@bot",
+    "总结"
+  ],
+  "help": {
+    "commands": [
+      { "cmd": "@我 总结", "desc": "生成当日群聊天总结报告" },
+      { "cmd": "@我 总结 <N>", "desc": "生成最近N条消息的总结" }
+    ],
+    "footer": "基于 AI 分析生成报告"
+  },
+  "has_config": true,
+  "config_schema": {
+    "llm_timeout": {
+      "type": "integer",
+      "title": "LLM超时（秒）",
+      "default": 30,
+      "minimum": 10,
+      "maximum": 120
+    },
+    "llm_retries": {
+      "type": "integer",
+      "title": "LLM重试次数",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "llm_backoff": {
+      "type": "number",
+      "title": "重试退避基值（秒）",
+      "default": 2.0
+    },
+    "max_topics": {
+      "type": "integer",
+      "title": "最大话题数量",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "max_golden_quotes": {
+      "type": "integer",
+      "title": "最大金句数量",
+      "default": 3
+    },
+    "enable_golden_quotes": {
+      "type": "boolean",
+      "title": "启用金句分析",
+      "default": true
+    },
+    "topic_prompt": {
+      "type": "string",
+      "title": "话题分析Prompt模板",
+      "default": ""
+    },
+    "golden_quote_prompt": {
+      "type": "string",
+      "title": "金句分析Prompt模板",
+      "default": ""
+    }
+  }
+}
