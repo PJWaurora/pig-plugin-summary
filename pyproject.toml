@@ -1,0 +1,16 @@
+[project]
+name = "pig-plugin-summary"
+version = "2.0.0"
+description = "聊天总结插件"
+authors = [{name = "pwaurora"}]
+requires-python = ">=3.10"
+dependencies = [
+    "pigsender-plugin-sdk",
+    "jieba",
+    "Pillow",
+    "openai",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends._legacy:_Backend"
